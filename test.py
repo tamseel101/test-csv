@@ -111,7 +111,7 @@ pii_generators = {
 # Function to replace PII in each row based on the entity type
 def replace_pii_data(row, pii_mappings):
     for entity_info in pii_mappings:
-        col_index = entity_info['ColumnNumber'] - 1  # Adjust to zero-based index
+        col_index = entity_info['ColumnNumber']   # Adjust to zero-based index
         col_name = row.index[col_index]  # Map column number to column name
         
         # Replace data based on the entity type
@@ -120,6 +120,7 @@ def replace_pii_data(row, pii_mappings):
             row[col_name] = pii_generators[entity_type]()
     
     return row
+
 
 # Main function to process the CSV, replace PII, and save to a new CSV
 def anonymize_pii_in_csv(input_csv_path, output_csv_path):
