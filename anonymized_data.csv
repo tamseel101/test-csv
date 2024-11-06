@@ -1,11 +1,11 @@
-Unnamed: 0,first_name,last_name,transaction_date,card_number,card_expire,card_type,card_sec_code,transaction amount,user_agent
-0,Sharon,Vazquez,2017-01-10,345613939027888,04/32,Amex,814,$1,test_user_1
-1,Tony,Underwood,2012-05-18,372245160256435,03/25,Amex,602,$1,test_user_2
-2,Randy,Barrett,2015-03-14,375755792834455,03/29,Amex,7178,$1,test_user_3
-3,Jeffrey,Ryan,2011-09-24,345025797108355,07/25,Amex,079,$1,test_user_4
-4,Ashley,Hall,2008-06-07,370152395914907,10/29,Amex,576,$1,test_user_5
-5,Joe,Smith,2010-10-16,373305233853060,06/33,Amex,075,$1,test_user_6
-6,Erin,Phelps,2003-10-08,374304666361450,12/31,Amex,670,$1,test_user_7
-7,Adam,Kelly,2023-10-07,376418777236720,04/34,Amex,517,$1,test_user_8
-8,Mandy,Jones,2004-06-21,346748021935439,06/34,Amex,374,$1,test_user_9
-9,Marissa,Moore,2010-03-11,343043702036787,01/26,Amex,332,$1,test_user_10
+Unnamed: 0,name,last_name,transaction_date,card_number,card_expire,card_type,card_sec_code,transaction amount,user_agent
+0,Andrew Dean,Rhodes,2022-07-30,374715356286840,02/28,Amex,625,$4459,Mozilla/5.0 (compatible; MSIE 8.0; Windows 95; Trident/3.0)
+1,Victor Baker,Roman,2000-05-25,346828859434893,02/26,Amex,241,$1,"Mozilla/5.0 (iPod; U; CPU iPhone OS 4_1 like Mac OS X; tg-TJ) AppleWebKit/531.38.1 (KHTML, like Gecko) Version/3.0.5 Mobile/8B115 Safari/6531.38.1"
+2,Timothy Wilson,Murphy,2020-09-03,345431508015162,02/30,Amex,725,$8,"Mozilla/5.0 (iPod; U; CPU iPhone OS 4_1 like Mac OS X; tr-TR) AppleWebKit/535.37.5 (KHTML, like Gecko) Version/4.0.5 Mobile/8B117 Safari/6535.37.5"
+3,Elizabeth Bush,Brown,2017-01-09,340489728749155,11/27,Amex,678,$1,Opera/9.60.(X11; Linux x86_64; sw-KE) Presto/2.9.184 Version/11.00
+4,Kim Hansen,Rose,2022-10-24,348117479815634,06/28,Amex,545,$1,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_9 rv:6.0; bs-BA) AppleWebKit/535.29.2 (KHTML, like Gecko) Version/4.1 Safari/535.29.2"
+5,Ronald Moody,Gallegos,2023-10-01,342241681706583,07/34,Amex,823,$8,"Mozilla/5.0 (iPod; U; CPU iPhone OS 4_0 like Mac OS X; en-BD) AppleWebKit/532.9.4 (KHTML, like Gecko) Version/4.0.5 Mobile/8B112 Safari/6532.9.4"
+6,Christopher Hill,Johnston,2012-05-20,345189542664904,10/33,Amex,311,$5,Opera/9.77.(X11; Linux i686; fur-IT) Presto/2.9.177 Version/11.00
+7,Jesus Garcia,Swanson,2003-12-16,373292664883636,11/33,Amex,356,$1,"Mozilla/5.0 (Linux; Android 2.0) AppleWebKit/535.0 (KHTML, like Gecko) Chrome/30.0.835.0 Safari/535.0"
+8,Maurice Gould,Flores,2023-06-10,347304292456249,06/32,Amex,775,$3,Mozilla/5.0 (Windows NT 5.01; ru-UA; rv:1.9.1.20) Gecko/4345-03-22 08:39:43 Firefox/3.8
+9,Brian Adkins,Austin,2005-07-15,341202699907978,11/24,Amex,6275,$1,Opera/9.94.(Windows 95; mt-MT) Presto/2.9.186 Version/11.00

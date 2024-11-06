@@ -1,5 +1,6 @@
 import pandas as pd
 from faker import Faker
+import random
 
 # Initialize Faker instance
 fake = Faker()
@@ -11,44 +12,22 @@ comprehend_entities = [
     {'Entity': 'DATE_TIME', 'ColumnNumber': 3},
     {'Entity': 'CREDIT_DEBIT_NUMBER', 'ColumnNumber': 4},
     {'Entity': 'CREDIT_DEBIT_EXPIRY', 'ColumnNumber': 5},
-    {'Entity': 'CREDIT_CARD_TYPE', 'ColumnNumber': 6},
     {'Entity': 'CREDIT_DEBIT_CVV', 'ColumnNumber': 7},
     {'Entity': 'MONEY', 'ColumnNumber': 8},
     {'Entity': 'USER_AGENT', 'ColumnNumber': 9}
     
 ]
 
-# Detect name type by column header
-def detect_name_type(column_name):
-    column_name_lower = column_name.lower()
-    if any(keyword in column_name_lower for keyword in ["first", "fname", "given"]):
-        return "first_name"
-    elif any(keyword in column_name_lower for keyword in ["last", "lname", "surname"]):
-        return "last_name"
-    elif any(keyword in column_name_lower for keyword in ["name", "full"]):
-        return "full_name"
-    return None
-
-# Split a full name into first and last names
-def split_full_name(full_name):
-    parts = full_name.split()
-    if len(parts) == 2:
-        return parts[0], parts[1]
-    elif len(parts) > 2:
-        return parts[0], parts[-1]
-    else:
-        return full_name, ""
-
 
 # Helper functions to generate fake data for each PII type
+def generate_fake_name():
+    return fake.name()
+
 def generate_fake_first_name():
     return fake.first_name()
 
 def generate_fake_last_name():
     return fake.last_name()
-
-def generate_fake_full_name():
-    return f"{generate_fake_first_name()} {generate_fake_last_name()}"
 
 def generate_fake_date():
     return fake.date_this_century()
@@ -110,9 +89,30 @@ def generate_fake_passport():
 def generate_fake_ssn():
     return fake.ssn()
 
+def generate_fake_amount(original_amount):
+    # Remove any currency symbols and commas from the original amount and get its length
+    cleaned_amount = ''.join(filter(str.isdigit, original_amount))
+    length_of_amount = len(cleaned_amount)
+    
+    # Generate a random integer with the same number of digits
+    if length_of_amount == 1:
+        fake_amount = random.randint(1, 9)
+    else:
+        lower_bound = 10**(length_of_amount - 1)
+        upper_bound = (10**length_of_amount) - 1
+        fake_amount = random.randint(lower_bound, upper_bound)
+    
+    # Return the fake amount formatted with a dollar sign
+    return f"${fake_amount}"
+
+def generate_fake_user_agent():
+    return fake.user_agent()
+
 # Dictionary to map each PII type to its corresponding fake data generator
 pii_generators = {
-    'NAME': generate_fake_full_name,
+    'NAME': generate_fake_name,
+    'MONEY': generate_fake_amount,
+    'USER_AGENT': generate_fake_user_agent,
     'DATE_TIME': generate_fake_date,
     'CREDIT_DEBIT_NUMBER': generate_fake_credit_card_number,
     'CREDIT_DEBIT_CVV': generate_fake_cvv,
@@ -139,64 +139,38 @@ pii_generators = {
 }
 
 # Function to replace PII in each row based on the entity type
-def replace_pii_data(row, pii_mappings, column_names):
+def replace_pii_data(row, pii_mappings):
     for entity_info in pii_mappings:
-        col_index = entity_info['ColumnNumber'] - 1  # Convert to 0-indexed
-        col_name = column_names[col_index]
+        col_index = entity_info['ColumnNumber']
+        col_name = row.index[col_index]  # Map column number to column name
         
-        # Determine if the column is a name column and handle accordingly
-        name_type = detect_name_type(col_name)
-        if name_type == "first_name":
-            row[col_name] = generate_fake_first_name()
-        elif name_type == "last_name":
-            row[col_name] = generate_fake_last_name()
-        elif name_type == "full_name":
-            fake_first, fake_last = split_full_name(generate_fake_full_name())
-            row[f"{col_name}_first"] = fake_first
-            row[f"{col_name}_last"] = fake_last
-        else:
-            # Handle other PII types
-            entity_type = entity_info['Entity']
-            if entity_type in pii_generators:
+        # Replace data based on the entity type
+        entity_type = entity_info['Entity']
+        if entity_type in pii_generators:
+            # For 'MONEY', pass the original value to preserve length
+            if entity_type == 'MONEY':
+                row[col_name] = pii_generators[entity_type](row[col_name])
+            # elif entity_type == 'NAME' and col_name == 'name':
+            #     row[col_name] = generate_fake_name()
+            elif entity_type == 'NAME' and col_name == 'first_name':
+                row[col_name] = generate_fake_first_name()
+            elif entity_type == 'NAME' and col_name == 'last_name':
+                row[col_name] = generate_fake_last_name()
+            else:
                 row[col_name] = pii_generators[entity_type]()
     
     return row
 
-
-#  Function to replace PII in each row based on the entity type
-def replace_pii_data(row, pii_mappings, column_names):
-    for entity_info in pii_mappings:
-        col_index = entity_info['ColumnNumber']   # Convert to 0-indexed
-        col_name = column_names[col_index]
-        
-        # Determine if the column is a name column and handle accordingly
-        name_type = detect_name_type(col_name)
-        if name_type == "first_name":
-            row[col_name] = generate_fake_first_name()
-        elif name_type == "last_name":
-            row[col_name] = generate_fake_last_name()
-        elif name_type == "full_name":
-            fake_first, fake_last = split_full_name(generate_fake_full_name())
-            row[f"{col_name}_first"] = fake_first
-            row[f"{col_name}_last"] = fake_last
-        else:
-            # Handle other PII types
-            entity_type = entity_info['Entity']
-            if entity_type in pii_generators:
-                row[col_name] = pii_generators[entity_type]()
-    
-    return row
 
 # Main function to process the CSV, replace PII, and save to a new CSV
 def anonymize_pii_in_csv(input_csv_path, output_csv_path):
     # Read the CSV and extract column names
     original_data = pd.read_csv(input_csv_path)
-    column_names = original_data.columns
     
     # Generate anonymized data for each row
     anonymized_rows = []
     for _, row in original_data.iterrows():
-        row = replace_pii_data(row, comprehend_entities, column_names)
+        row = replace_pii_data(row, comprehend_entities)
         anonymized_rows.append(row)
     
     # Create new DataFrame and save to CSV
