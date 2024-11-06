@@ -7,10 +7,14 @@ fake = Faker()
 # Comprehend output with PII entities and their column numbers
 comprehend_entities = [
     {'Entity': 'NAME', 'ColumnNumber': 1},
+    {'Entity': 'NAME', 'ColumnNumber': 2},
     {'Entity': 'DATE_TIME', 'ColumnNumber': 3},
     {'Entity': 'CREDIT_DEBIT_NUMBER', 'ColumnNumber': 4},
-    # Add all PII entities here as per Amazon Comprehend output
+    {'Entity': 'DATE_TIME', 'ColumnNumber': 5},
+    {'Entity': 'CREDIT_CARD_TYPE', 'ColumnNumber': 6},
+    {'Entity': 'CREDIT_CARD_CVV', 'ColumnNumber': 7}
 ]
+
 
 # Helper functions to generate fake data for each PII type
 def generate_fake_name():
