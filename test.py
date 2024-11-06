@@ -166,7 +166,7 @@ def replace_pii_data(row, pii_mappings, column_names):
 #  Function to replace PII in each row based on the entity type
 def replace_pii_data(row, pii_mappings, column_names):
     for entity_info in pii_mappings:
-        col_index = entity_info['ColumnNumber'] - 1  # Convert to 0-indexed
+        col_index = entity_info['ColumnNumber']   # Convert to 0-indexed
         col_name = column_names[col_index]
         
         # Determine if the column is a name column and handle accordingly

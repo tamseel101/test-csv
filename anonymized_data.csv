@@ -1,11 +1,11 @@
 Unnamed: 0,first_name,last_name,transaction_date,card_number,card_expire,card_type,card_sec_code,transaction amount,user_agent
-0,Anthony,Salazar,347679642306933,12/24,2024-09-02,004,bhb,$1,test_user_1
-1,Stephanie,Rice,378958217540957,04/29,2024-09-03,707,bhb,$1,test_user_2
-2,Andrew,Johnson,344407647135641,04/30,2024-09-04,934,bhb,$1,test_user_3
-3,Isaac,Williams,376312471605654,08/27,2024-09-05,578,bhb,$1,test_user_4
-4,Faith,Burns,340824347230957,06/33,2024-09-06,089,bhb,$1,test_user_5
-5,Alexandra,Herring,341107850615783,01/28,2024-09-07,8592,bhb,$1,test_user_6
-6,Elizabeth,Porter,341221590097945,02/28,2024-09-08,519,bhb,$1,test_user_7
-7,Laurie,Tran,379951279788795,06/25,2024-09-09,519,bhb,$1,test_user_8
-8,Emma,White,349145853082660,12/25,2024-09-10,138,bhb,$1,test_user_9
-9,Dominique,Aguirre,378663716216931,12/29,2024-09-11,117,bhb,$1,test_user_10
+0,Sharon,Vazquez,2017-01-10,345613939027888,04/32,Amex,814,$1,test_user_1
+1,Tony,Underwood,2012-05-18,372245160256435,03/25,Amex,602,$1,test_user_2
+2,Randy,Barrett,2015-03-14,375755792834455,03/29,Amex,7178,$1,test_user_3
+3,Jeffrey,Ryan,2011-09-24,345025797108355,07/25,Amex,079,$1,test_user_4
+4,Ashley,Hall,2008-06-07,370152395914907,10/29,Amex,576,$1,test_user_5
+5,Joe,Smith,2010-10-16,373305233853060,06/33,Amex,075,$1,test_user_6
+6,Erin,Phelps,2003-10-08,374304666361450,12/31,Amex,670,$1,test_user_7
+7,Adam,Kelly,2023-10-07,376418777236720,04/34,Amex,517,$1,test_user_8
+8,Mandy,Jones,2004-06-21,346748021935439,06/34,Amex,374,$1,test_user_9
+9,Marissa,Moore,2010-03-11,343043702036787,01/26,Amex,332,$1,test_user_10
