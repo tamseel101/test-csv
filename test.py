@@ -90,20 +90,34 @@ def generate_fake_ssn():
     return fake.ssn()
 
 def generate_fake_amount(original_amount):
-    # Remove any currency symbols and commas from the original amount and get its length
-    cleaned_amount = ''.join(filter(str.isdigit, original_amount))
-    length_of_amount = len(cleaned_amount)
-    
-    # Generate a random integer with the same number of digits
-    if length_of_amount == 1:
-        fake_amount = random.randint(1, 9)
+    # Check if there is a decimal point
+    if '.' in original_amount:
+        # Split the amount into integer and decimal parts
+        integer_part, decimal_part = original_amount.split('.')
+        integer_part = ''.join(filter(str.isdigit, integer_part))  # Remove any commas from integer part
+        decimal_length = len(decimal_part)
     else:
-        lower_bound = 10**(length_of_amount - 1)
-        upper_bound = (10**length_of_amount) - 1
-        fake_amount = random.randint(lower_bound, upper_bound)
-    
-    # Return the fake amount formatted with a dollar sign
-    return f"${fake_amount}"
+        # If no decimal part, process only the integer part
+        integer_part = ''.join(filter(str.isdigit, original_amount))
+        decimal_length = 0
+
+    # Generate a random integer with the same number of digits as the integer part
+    length_of_integer_part = len(integer_part)
+    lower_bound = 10**(length_of_integer_part - 1)
+    upper_bound = (10**length_of_integer_part) - 1
+    fake_integer_part = random.randint(lower_bound, upper_bound)
+
+    # Format the integer part with commas
+    formatted_integer_part = f"{fake_integer_part:,}"
+
+    # Generate a random decimal part if needed
+    if decimal_length > 0:
+        fake_decimal_part = ''.join(str(random.randint(0, 9)) for _ in range(decimal_length))
+        fake_amount = f"${formatted_integer_part}.{fake_decimal_part}"
+    else:
+        fake_amount = f"${formatted_integer_part}"
+
+    return fake_amount
 
 def generate_fake_user_agent():
     return fake.user_agent()
