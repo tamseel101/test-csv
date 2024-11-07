@@ -1,5 +1,7 @@
 import pandas as pd
 from faker import Faker
+from datetime import datetime
+
 import random
 
 # Initialize Faker instance
@@ -30,13 +32,22 @@ def generate_fake_last_name():
     return fake.last_name()
 
 def generate_fake_date():
-    return fake.date_this_century()
+    # Generate a fake date between January 1st and today’s date
+    start_date = datetime(datetime.now().year, 1, 1)
+    end_date = datetime.now()
+    fake_date = fake.date_between(start_date=start_date, end_date=end_date)
+    return fake_date
+
 
 def generate_fake_credit_card_number():
     return fake.credit_card_number(card_type="amex")
 
-def generate_fake_cvv():
-    return fake.credit_card_security_code()
+def generate_fake_cvv(original_cvv):
+    # Determine the length of the original CVV
+    length_of_cvv = len(original_cvv)
+    # Generate a random number with the same number of digits
+    fake_cvv = ''.join(str(random.randint(0, 9)) for _ in range(length_of_cvv))
+    return fake_cvv
 
 def generate_fake_expiry():
     return fake.credit_card_expire()
@@ -170,6 +181,8 @@ def replace_pii_data(row, pii_mappings):
                 row[col_name] = generate_fake_first_name()
             elif entity_type == 'NAME' and col_name == 'last_name':
                 row[col_name] = generate_fake_last_name()
+            elif entity_type == 'CREDIT_DEBIT_CVV':
+                row[col_name] = generate_fake_cvv(row[col_name])
             else:
                 row[col_name] = pii_generators[entity_type]()
     
