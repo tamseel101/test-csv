@@ -1,0 +1,11 @@
+Unnamed: 0,name,last_name,transaction_date,card_number,card_expire,card_type,card_sec_code,transaction amount,user_agent
+0,Ronald Lopez,Chavez,2024-10-18,349939984653542,02/34,Amex,031,$77,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/40.0.840.0 Safari/532.0"
+1,Eric Strong,Jones,2024-01-11,346303093856160,09/33,Amex,583,$1,"Mozilla/5.0 (iPad; CPU iPad OS 3_2_2 like Mac OS X) AppleWebKit/536.1 (KHTML, like Gecko) FxiOS/13.2e9576.0 Mobile/61J252 Safari/536.1"
+2,Jeffrey Duncan,Casey,2024-08-24,371707389258063,11/28,Amex,791,$1,Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 4.0; Trident/5.0)
+3,Katherine Newman,Williams,2024-01-08,378850352390555,05/27,Amex,193,$6,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/536.2 (KHTML, like Gecko) Chrome/14.0.889.0 Safari/536.2"
+4,Bryce Martinez,Davis,2024-09-29,377307111836254,08/34,Amex,666,$3,"Mozilla/5.0 (iPad; CPU iPad OS 14_2_1 like Mac OS X) AppleWebKit/531.2 (KHTML, like Gecko) CriOS/43.0.882.0 Mobile/81F226 Safari/531.2"
+5,John Thompson,Case,2024-01-27,376939028671548,08/28,Amex,224,$9,"Mozilla/5.0 (Macintosh; PPC Mac OS X 10_10_0 rv:6.0; ur-IN) AppleWebKit/532.22.4 (KHTML, like Gecko) Version/5.0 Safari/532.22.4"
+6,Todd Huynh,Jackson,2024-03-12,347156714131051,03/33,Amex,542,$6,"Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/535.8.4 (KHTML, like Gecko) Version/5.1 Safari/535.8.4"
+7,Amanda Miller,Kemp,2024-07-13,342413349722969,11/32,Amex,027,$4,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_6; rv:1.9.6.20) Gecko/2170-09-17 22:56:59 Firefox/8.0
+8,Erin Vega,Glass,2024-03-31,377635222427468,04/34,Amex,445,$6,Mozilla/5.0 (Windows NT 6.1; rw-RW; rv:1.9.2.20) Gecko/4830-01-30 07:02:58 Firefox/4.0
+9,Nathaniel Powell,Pollard,2024-02-11,373483099022649,04/32,Amex,997,$2,Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.2; Trident/4.1)
